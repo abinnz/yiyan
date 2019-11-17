@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 级别从高到低 OFF 、 FATAL 、 ERROR 、 WARN 、 INFO 、 DEBUG 、 TRACE 、 ALL -->
+<!-- 日志输出规则 根据当前ROOT 级别，日志输出时，级别高于root默认的级别时 会输出 -->
+<!-- scan 当此属性设置为true时，配置文件如果发生改变，将会被重新加载，默认值为true -->
+<!-- scanPeriod 设置监测配置文件是否有修改的时间间隔，如果没有给出时间单位，默认单位是毫秒。当scan为true时，此属性生效。默认的时间间隔为1分 -->
+<!-- debug 当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态，默认值为false -->
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+
+    <!-- 日志文件存放位置 -->
+    <property name="LOG_HOME" value="logs"/>
+    <property name="LOG_NAME" value="yiyan-web.log"/>
+    <!-- 格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 -->
+    <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"/>
+
+    <!-- 控制台输出 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 滚动记录文件，先将日志记录到指定文件，当符合某个条件时，将日志记录到其他文件 -->
+    <appender name="DAILY_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/${LOG_NAME}</file>
+        <!-- ThresholdFilter:临界值过滤器，过滤掉 TRACE 和 DEBUG 级别的日志 -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+            <!--<onMatch>ACCEPT</onMatch>-->
+            <!--<onMismatch>DENY</onMismatch>-->
+        </filter>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- 每天生成一个日志文件，保存15天的日志文件，每份日志大小不超过50MB，总日志大小不超过1GB -->
+            <!-- 如果隔一段时间没有输出日志，前面过期的日志不会被删除，只有再重新打印日志的时候，会触发删除过期日志的操作。 -->
+            <fileNamePattern>${LOG_HOME}/${LOG_NAME}.%d{yyyy-MM-dd}.%i</fileNamePattern>
+            <maxHistory>15</maxHistory>
+            <maxFileSize>50MB</maxFileSize>
+            <totalSizeCap>1GB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+    <!-- 日志输出级别 -->
+    <root level="DEBUG">
+        <appender-ref ref="STDOUT" />
+    </root>
+
+    <!-- 日志输出级别 -->
+    <root level="INFO">
+        <appender-ref ref="DAILY_LOG" />
+    </root>
+
+</configuration>

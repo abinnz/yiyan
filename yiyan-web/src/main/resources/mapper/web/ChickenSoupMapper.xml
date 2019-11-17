@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.abinnz.yiyan.web.dao.ChickenSoupMapper">
+  <resultMap id="BaseResultMap" type="com.abinnz.yiyan.web.domain.ChickenSoup">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="creator_id" jdbcType="VARCHAR" property="creatorId" />
+    <result column="updator_id" jdbcType="VARCHAR" property="updatorId" />
+  </resultMap>
+
+  <select id="selectRandomList" resultMap="BaseResultMap">
+    SELECT t1.*
+      FROM chicken_soup AS t1 JOIN
+           (SELECT FLOOR(RAND() *
+                         (SELECT MAX(id)
+                            FROM chicken_soup)) AS id)
+            AS t2
+     WHERE t1.id >= t2.id
+     ORDER BY t1.id ASC
+  </select>
+  
+</mapper>

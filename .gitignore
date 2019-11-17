@@ -1,0 +1,7 @@
+/*
+# ignore all but these:
+!yiyan-etc/
+!yiyan-mini/
+!yiyan-web/
+!.gitignore
+!README*.md

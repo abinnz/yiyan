@@ -1,0 +1,10 @@
+server:
+  port: 8090
+  
+logging:
+  level:
+    com:
+      abinnz:
+        cs:
+          web:
+            dao: info

@@ -1,0 +1,29 @@
+<view class="container-top">
+    <view class="main-card">
+        <view class="card-timer">
+            <view class="timer-top">{{ timerTop }}</view>
+            <view class="timer-bottom">{{ timerBottom }}</view>
+        </view>
+        <view class="card-line"></view>
+        <view class="card-content" animation="{{ contentAnimation }}">
+            <image src="../../resources/img/symbol-top.png" class="text-top"></image>
+            <view class="text-middle">
+                {{ content }}
+            </view>
+            <image src="../../resources/img/symbol-bottom.png" class="text-bottom"></image>
+        </view>
+    </view>
+
+</view>
+
+<view class="container-bottom">
+    <button class="bottom-btn goback-btn" bindtap="goBack">
+        <image src="../../resources/img/goback.png" class="goback-img"></image>
+    </button>
+    <button class="bottom-btn share-btn" open-type="share" bindtap="share">
+        <image src="../../resources/img/share.png" class="share-img"></image>
+    </button>
+    <button class="bottom-btn" bindtap="goNext">
+        <image src="../../resources/img/gonext.png" class="gonext-img"></image>
+    </button>
+</view>

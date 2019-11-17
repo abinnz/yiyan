@@ -1,0 +1,86 @@
+/**index.wxss**/
+page {
+    height: 100%;
+}
+
+.container-top {
+    height: 70%;
+    padding: 75rpx 60rpx;
+    color: #EF8A5E;
+}
+
+.container-bottom {
+    text-align: center;
+}
+
+.main-card {
+    height: 100%;
+    background-color: #FAED6A;
+    border-radius: 35rpx;
+    box-shadow: 5rpx 5rpx 25rpx #ef8a5e;
+}
+
+.timer-top {
+    padding: 26rpx 0rpx;
+    text-align: center;
+    font-size: 38rpx;
+}
+
+.timer-bottom {
+    text-align: center;
+    font-weight: bold;
+    font-size: 160rpx;
+    line-height: 160rpx;
+    padding-bottom: 16rpx;
+}
+
+.card-line {
+    border: 4rpx solid white;
+    margin: 20rpx 40rpx 20rpx 40rpx;
+    border-radius: 3rpx;
+}
+
+.text-top {
+    width: 16rpx;
+    height: 16rpx;
+    margin-left: 28rpx;
+    margin-bottom: 12rpx;
+    margin-top: 55rpx;
+}
+
+.text-bottom {
+    margin-right: 28rpx;
+    margin-top: 12rpx;
+    width: 16rpx;
+    height: 16rpx;
+    float: right;
+}
+
+.text-middle {
+    padding: 0rpx 55rpx;
+    line-height: 65rpx;
+    font-size: 38rpx;
+}
+
+.goback-img, .share-img, .gonext-img {
+    width: 130rpx;
+    height: 130rpx;
+}
+
+.bottom-btn{
+    width: 130rpx;
+    height: 130rpx;
+    display: inline-block;
+    padding: 0rpx;
+    margin: 0rpx;
+    background-color: #FAED6A;
+    border-radius: 50%;
+    box-shadow: 3rpx 3rpx 25rpx #EF8A5E;
+}
+.bottom-btn::after {
+    border: 0; 
+}
+
+.goback-btn, .share-btn {
+    margin-right: 55rpx;
+}

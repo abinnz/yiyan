@@ -1,0 +1,70 @@
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: utf-8
+    
+spring:
+  profiles:
+    #应用环境
+    active: prd
+  datasource:
+    druid:
+      # 数据库访问配置, 使用druid数据源 
+      type: com.alibaba.druid.pool.DruidDataSource
+      driverClassName: com.mysql.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/yiyan?useUnicode=true&characterEncoding=utf8&useSSL=true
+      username: root
+      password: root
+      # 连接池配置
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      # 连接等待超时时间
+      max-wait: 30000
+      # 配置检测可以关闭的空闲连接间隔时间
+      time-between-eviction-runs-millis: 60000
+      # 配置连接在池中的最小生存时间
+      min-evictable-idle-time-millis: 300000
+      validation-query: select '1' from dual
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      # 打开PSCache，并且指定每个连接上PSCache的大小
+      pool-prepared-statements: true
+      max-open-prepared-statements: 20
+      max-pool-prepared-statement-per-connection-size: 20
+
+mybatis:
+  config-location: classpath:config/mybatis-config.xml
+  # type-aliases扫描路径
+  type-aliases-package: com.abinnz.yiyan.web.domain
+  # mapper xml实现扫描路径
+  mapper-locations: classpath:mapper/*/*.xml
+  property:
+    order: BEFORE
+    
+# mappers 多个接口时逗号隔开
+mapper:
+  mappers: com.abinnz.yiyan.common.config.MyMapper
+  not-empty: false
+  identity: MYSQL
+  order: after
+    
+# pagehelper
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql 
+  
+logging:
+  level:
+    com:
+      abinnz:
+        cs:
+          web:
+            dao: debug
+
+# 分页配置
+page:
+  page-size: 20
