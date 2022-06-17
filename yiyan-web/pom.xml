@@ -26,7 +26,7 @@
         <jdbc.version>5.1.46</jdbc.version>
         <druid.version>1.1.10</druid.version>
         <hutool.version>4.1.8</hutool.version>
-        <fastjson.version>1.2.49</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
         <mapper.version>2.1.1</mapper.version>
         <pagehelper.version>1.2.3</pagehelper.version>
     </properties>
